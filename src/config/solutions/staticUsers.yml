@@ -1,0 +1,11 @@
+config:
+  target: http://localhost:8080
+  phases:
+    - duration: 60
+      arrivalRate: 100
+  processor: './scripts/processor.js'
+  ensure: 
+    p95: 2000
+    p99: 3000
+  plugins:
+    expect: {}

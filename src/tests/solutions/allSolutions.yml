@@ -1,0 +1,46 @@
+scenarios:
+  - name: "get all solutions"
+    flow: 
+    - get: 
+        url: "/api/v1/solutions"
+        expect:
+          - statusCode: 200
+          - contentType: json
+            
+  - name: "get single solution"
+    flow:
+    - get:
+        url: "/api/v1/solutions"
+        capture: 
+          json: "$.solutions"
+          as: "solutions"
+        expect:
+          - statusCode: 200
+          - contentType: json
+    - function: "getRandomSolutionId"
+    - get:
+        url: "/api/v1/solutions/{{ solutionId }}"
+        expect:
+          - statusCode: 200
+          - contentType: json
+          - hasProperty: solution.id
+          - hasProperty: solution.name
+
+  - name: "post filtered list"
+    flow:
+      - get:
+          url: "/api/v1/capabilities"
+          capture:
+            json: "$.capabilities"
+            as: "capabilities"
+          expect:
+            - statusCode: 200
+            - contentType: json
+      - function: "getRandomCapability"
+      - post:
+          url: "/api/v1/solutions"
+          json: 
+            capabilities: "{{capabilityArray}}"
+          expect:
+            - statusCode: 200
+            - contentType: json

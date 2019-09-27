@@ -1,0 +1,21 @@
+scenarios:  
+  - name: "Single solution fuzz test"
+    flow:    
+    - get:
+        url: "/api/v1/solutions/{{ naughtyString }}"
+        expect:
+          - statusCode: 200
+          - contentType: json
+          - hasProperty: solution.id
+          - equals:
+            - "{{ solutionId }}"
+
+  - name: "post filtered list fuzz test"
+    flow:      
+      - post:
+          url: "/api/v1/solutions"
+          json: 
+            capabilities: "{{ naughtyString }}"
+          expect:
+            - statusCode: 200
+            - contentType: json

@@ -1,0 +1,20 @@
+{
+  "name": "buying-catalogue-service-perf",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test:solutions-static": "artillery run tests/solutions/allSolutions.yml -c config/solutions/staticUsers.yml",
+    "test:solutions-ramp": "artillery run tests/solutions/allSolutions.yml -c config/solutions/rampUsers.yml",
+    "test:solutions-fuzz": "artillery run tests/solutions/fuzzSolutions.yml -c config/solutions/fuzzConfig.yml",
+    "test:quick": "artillery quick --count 20 -n 10 \"http://localhost:8080/api/v1/solutions\""
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "artillery": "^1.6.0-29",
+    "artillery-plugin-expect": "^1.2.1",
+    "artillery-plugin-fuzzer": "^1.0.1"
+  }
+}
