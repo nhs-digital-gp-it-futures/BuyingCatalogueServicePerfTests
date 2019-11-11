@@ -7,7 +7,7 @@ scenarios:
           - statusCode: 200
           - contentType: json
             
-  - name: "get single solution"
+  - name: "get single solution dashboard"
     flow:
     - get:
         url: "/api/v1/solutions"
@@ -19,7 +19,26 @@ scenarios:
           - contentType: json
     - function: "getRandomSolutionId"
     - get:
-        url: "/api/v1/solutions/{{ solutionId }}"
+        url: "/api/v1/solutions/{{ solutionId }}/dashboard"
+        expect:
+          - statusCode: 200
+          - contentType: json
+          - hasProperty: solution.id
+          - hasProperty: solution.name
+
+- name: "get single solution preview"
+    flow:
+    - get:
+        url: "/api/v1/solutions"
+        capture: 
+          json: "$.solutions"
+          as: "solutions"
+        expect:
+          - statusCode: 200
+          - contentType: json
+    - function: "getRandomSolutionId"
+    - get:
+        url: "/api/v1/solutions/{{ solutionId }}/preview"
         expect:
           - statusCode: 200
           - contentType: json
