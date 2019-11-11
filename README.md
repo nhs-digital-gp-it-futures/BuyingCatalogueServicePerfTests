@@ -17,3 +17,12 @@ Ensure you have Nodejs installed on your system
 | `test:solutions-fuzz` | `npm run test:solutions-fuzz` | Tests the above endpoints using a variety of dirty/naughty strings that attempt to break the endpoints |
 
 Each of the above scripts (with the exception of `test:quick`) can be overloaded to run against different targets/deployments. This is done by adding `-- --target={http://your.url:port}` to set the base url of the api under test
+
+## Storing results
+To save the results into a file add the option flag to the above command:
+`npm run test:solutions-ramp -- -o <resultsfile>.json`
+
+## Viewing results
+To generate a html report, run the following command:
+`artillery report -o <filename>.html <resultsfile>.json`
+Open the html file in your browser

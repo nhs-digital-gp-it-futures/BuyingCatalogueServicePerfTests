@@ -9,7 +9,7 @@ config:
     - duration: 60
       arrivalRate: 50
       rampTo: 0
-  processor: '../../scripts/processor.js'
+  processor: './scripts/processor.js'
   ensure: 
     p95: 2000
     p99: 3000
