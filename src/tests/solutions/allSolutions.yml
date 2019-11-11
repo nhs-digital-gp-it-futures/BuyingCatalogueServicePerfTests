@@ -26,7 +26,7 @@ scenarios:
           - hasProperty: solution.id
           - hasProperty: solution.name
 
-- name: "get single solution preview"
+  - name: "get single solution preview"
     flow:
     - get:
         url: "/api/v1/solutions"
